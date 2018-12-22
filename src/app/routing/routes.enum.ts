@@ -1,6 +1,7 @@
 export enum Routes {
   ROOT = '',
-  GAMES = 'games',
+  GAME_LIST = '/',
+  NEW_GAME = 'new-game',
   SPECTATE = 'spectate',
   HOST = 'host'
 }
