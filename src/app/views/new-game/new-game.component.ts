@@ -1,13 +1,28 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Routes } from '../../routing/routes.enum';
 
 @Component({
   selector: 'app-new-game',
   templateUrl: './new-game.component.html'
 })
 export class NewGameComponent {
-  title: string;
-  description: string;
+  title = '';
+  description = '';
+  inviteOnly = false;
 
-  constructor() {
+  constructor(private router: Router) {
+  }
+
+  createGame(): void {
+    // TODO : Check if title not empty otherwise give feedback
+    // TODO : call game service create new game
+    // TODO : on subscribe =>
+    // TODO : Store the host_session in localstorage
+    // TODO : use the game_id to navigate to host game page
+  }
+
+  cancel(): void {
+    this.router.navigate([Routes.GAME_LIST]);
   }
 }
