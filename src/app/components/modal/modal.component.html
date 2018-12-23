@@ -1,0 +1,25 @@
+<div class="outer-modal" (click)="outerModalClicked($event)">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">{{ title }}</h4>
+        <button class="close pull-right" aria-label="Close" (click)="closeClicked()">
+          <i class="fa fa-close"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ng-content></ng-content>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-{{ confirmButtonClass }}" (click)="confirmClicked()">
+          <i class="fa fa-{{ confirmButtonIcon }}">&nbsp;</i>
+          {{ confirmButtonText }}
+        </button>
+        <button aria-label="Close" class="btn btn-{{ cancelButtonClass }}" (click)="cancelClicked()">
+          <i class="fa fa-{{ cancelButtonIcon }}">&nbsp;</i>
+          {{ cancelButtonText }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

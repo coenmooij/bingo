@@ -15,6 +15,8 @@ export class NewGameComponent {
   }
 
   createGame(): void {
+
+    this.router.navigate([Routes.HOST_GAME, '1234']); // TODO : Remove when implementing real solution
     // TODO : Check if title not empty otherwise give feedback
     // TODO : call game service create new game
     // TODO : on subscribe =>
