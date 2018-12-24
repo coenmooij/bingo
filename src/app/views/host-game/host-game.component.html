@@ -1,27 +1,23 @@
 <!-- TODO : Split component into smaller ones in subfolders -->
 
 <div class="mb-4">
-  <h1>
-    {{ title }} (#{{ gameId }})
-  </h1>
-  <h5>{{ description }}</h5>
+  <h1>{{ title }}</h1>
 </div>
 
-<div *ngIf="!started">
+<div *ngIf="!startedAt">
   <div class="mb-4">
-    <h2>Access code</h2>
+    <h2>Game PIN</h2>
     <h2 class="alert alert-warning text-center">
-      {{ code }}
+      {{ gamePin }}
     </h2>
   </div>
   <div class="alert text-center">
-    <button class="btn btn-success m-2" (click)="startGame()"><i class="fa fa-play">&nbsp;</i>START GAME</button>
-    <button class="btn btn-danger m-2" (click)="cancelGame()"><i class="fa fa-close">&nbsp;</i>CANCEL GAME
-    </button>
+    <button class="btn btn-lg btn-success mr-2 md-2" (click)="startGame()"><i class="fa fa-play">&nbsp;</i>START GAME</button>
+    <button class="btn btn-lg btn-danger" (click)="cancelGame()"><i class="fa fa-close">&nbsp;</i>CANCEL GAME</button>
   </div>
 </div>
 
-<div *ngIf="started">
+<div *ngIf="startedAt">
   <!-- TODO : Add bingo playing visual -->
   <div class="alert text-center">
     <button class="btn btn-success m-2" (click)="nextBall()"><i class="fa fa-play">&nbsp;</i>NEXT BALL</button>
@@ -44,7 +40,7 @@
 </app-modal>
 
 <div class="text-center">
-  <!-- TODO : Make into component that polls for players (until started) -->
+  <!-- TODO : Make into component that polls for players (until startedAt) -->
   <h2>Registered Players ({{ players.length }})</h2>
   <!-- TODO : Max player name length -->
   <h4 class="player" *ngFor="let player of players">

@@ -5,6 +5,7 @@ import { LayoutModule } from './layout/layout.module';
 import { RoutingModule } from './routing/routing.module';
 import { ViewsModule } from './views/views.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
   imports: [
     AngularFontAwesomeModule,
     BrowserModule,
+    HttpClientModule,
     LayoutModule,
     RoutingModule,
     ViewsModule

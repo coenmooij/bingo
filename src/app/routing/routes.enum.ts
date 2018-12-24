@@ -1,10 +1,10 @@
 export enum Routes {
   ROOT = '',
-  GAME_LIST = '/',
+  JOIN_GAME = '',
   NEW_GAME = 'new-game',
   HOST_GAME = 'host-game'
 }
 
 export enum RouteParameters {
-  GAME_ID = 'game_id'
+  GAME_ID = 'id'
 }

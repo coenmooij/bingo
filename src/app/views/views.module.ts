@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { GameListComponent } from './game-list/game-list.component';
+import { JoinGameComponent } from './join-game/join-game.component';
 import { RoutingModule } from '../routing/routing.module';
 import { CommonModule } from '@angular/common';
 import { NewGameComponent } from './new-game/new-game.component';
@@ -9,7 +9,7 @@ import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   declarations: [
-    GameListComponent,
+    JoinGameComponent,
     NewGameComponent,
     HostGameComponent
   ],

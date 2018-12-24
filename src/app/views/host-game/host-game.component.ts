@@ -9,13 +9,13 @@ import { RouteParameters } from '../../routing/routes.enum';
 export class HostGameComponent {
   gameId: string;
 
-  started = false;
+  startedAt = false;
   ended = false;
   stopGameModalVisible = false;
 
   title = 'My new bingo game'; // TODO : Get from api
   description = 'Playing bingo together with all of my best friends'; // TODO : get from api
-  code = 63234; // TODO : Get from api
+  gamePin = 63234; // TODO : Get from api
 
   players: string[] = [
     'Mama',
@@ -31,7 +31,7 @@ export class HostGameComponent {
   startGame(): void {
     // TODO : Call api and actually start the game, stop players and stuff
     // TODO : Get the players one last time then stop polling
-    this.started = true;
+    this.startedAt = true;
   }
 
   cancelGame(): void {

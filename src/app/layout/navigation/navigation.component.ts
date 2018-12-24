@@ -6,6 +6,6 @@ import { Routes } from '../../routing/routes.enum';
   templateUrl: './navigation.component.html',
 })
 export class NavigationComponent {
-  HOME_URL = `/${Routes.ROOT}`;
+  HOME_URL = `${Routes.JOIN_GAME}`;
   NEW_GAME_URL = `/${Routes.NEW_GAME}`;
 }

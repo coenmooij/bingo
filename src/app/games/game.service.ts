@@ -1,17 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Game } from './game.interface';
+import { Observable } from 'rxjs';
+import { HostedGame } from './hosted-game.interface';
+import { ApiService } from '../api/api.service';
+import { map } from 'rxjs/operators';
+
+const GAMES_RESOURCE = 'games';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
-  GAMES: Game[] = [
-    {title: 'My first game', description: 'My very first bingo game', private: false, started: false},
-    {title: 'Ximedes game', description: 'Play a game together with colleagues', private: true, started: true}
-  ];
+  constructor(private apiService: ApiService) {
+  }
 
-  getGames(): Observable<Game[]> {
-    return of(this.GAMES);
+  createGame(title: string): Observable<HostedGame> {
+    return this.apiService.post(GAMES_RESOURCE, {title})
+      .pipe(map(
+        (data: { data: HostedGame }) => {
+          return data.data;
+        }
+      ));
   }
 }
