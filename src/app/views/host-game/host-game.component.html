@@ -1,46 +1,50 @@
-<!-- TODO : Split component into smaller ones in subfolders -->
-
 <div class="mb-4">
-  <h1>{{ title }}</h1>
+  <h1>{{ hostedGame.title }}</h1>
 </div>
 
-<div *ngIf="!startedAt">
-  <div class="mb-4">
-    <h2>Game PIN</h2>
+<!-- TODO : Game PIN Component-->
+<div *ngIf="!hostedGame.startedAt">
+  <div class="row">
+    <h2 class="alert">Game PIN</h2>
     <h2 class="alert alert-warning text-center">
-      {{ gamePin }}
+      {{ hostedGame.pin }}
     </h2>
   </div>
-  <div class="alert text-center">
-    <button class="btn btn-lg btn-success mr-2 md-2" (click)="startGame()"><i class="fa fa-play">&nbsp;</i>START GAME</button>
-    <button class="btn btn-lg btn-danger" (click)="cancelGame()"><i class="fa fa-close">&nbsp;</i>CANCEL GAME</button>
-  </div>
 </div>
 
-<div *ngIf="startedAt">
-  <!-- TODO : Add bingo playing visual -->
-  <div class="alert text-center">
-    <button class="btn btn-success m-2" (click)="nextBall()"><i class="fa fa-play">&nbsp;</i>NEXT BALL</button>
-    <button class="btn btn-danger m-2" (click)="stopGame()"><i class="fa fa-close">&nbsp;</i>STOP GAME</button>
-  </div>
-</div>
+<!-- TODO : Add bingo playing visual -->
 
-<app-modal *ngIf="stopGameModalVisible"
-           [title]="'Confirmation'"
-           [confirmButtonIcon]="'close'"
-           [confirmButtonClass]="'danger'"
-           [confirmButtonText]="'STOP GAME'"
-           [cancelButtonIcon]="'play'"
-           [cancelButtonClass]="'success'"
-           [cancelButtonText]="'KEEP GOING'"
-           (confirm)="confirmStopGame()"
-           (close)="cancelStopGame()"
-           (cancel)="cancelStopGame()">
-  <h5>Are you sure you want to stop the game?</h5>
-</app-modal>
-
+<!-- TODO : Bingo playing buttons -->
 <div class="text-center">
-  <!-- TODO : Make into component that polls for players (until startedAt) -->
+  <hr>
+  <button
+    *ngIf="!hostedGame.startedAt"
+    class="btn btn-lg btn-success"
+    (click)="startGame()">
+    <i class="fa fa-play">&nbsp;</i>START
+  </button>
+  <button
+    *ngIf="hostedGame.startedAt"
+    class="btn btn-lg btn-success"
+    (click)="nextBall()">
+    <i class="fa fa-play">&nbsp;</i>NEXT BALL
+  </button>
+  <button
+    class="btn btn-lg btn-danger ml-3"
+    (click)="stopGame()">
+    <i class="fa fa-close">&nbsp;</i>STOP
+  </button>
+  <hr>
+</div>
+
+<app-stop-game-modal
+  *ngIf="stopGameModalVisible"
+  (confirm)="confirmStopGame()"
+  (cancel)="cancelStopGame()"
+></app-stop-game-modal>
+
+<!-- TODO : Make into component that polls for players (until startedAt) -->
+<div class="text-center">
   <h2>Registered Players ({{ players.length }})</h2>
   <!-- TODO : Max player name length -->
   <h4 class="player" *ngFor="let player of players">

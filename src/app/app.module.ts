@@ -6,6 +6,7 @@ import { RoutingModule } from './routing/routing.module';
 import { ViewsModule } from './views/views.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from '@angular/common/http';
+import { GameModule } from './games/game.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     LayoutModule,
     RoutingModule,
-    ViewsModule
+    ViewsModule,
+    GameModule
   ],
   providers: [],
   bootstrap: [AppComponent]

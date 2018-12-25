@@ -6,9 +6,7 @@ import { map } from 'rxjs/operators';
 
 const GAMES_RESOURCE = 'games';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class GameService {
   constructor(private apiService: ApiService) {
   }

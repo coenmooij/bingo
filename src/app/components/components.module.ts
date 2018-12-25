@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { ModalComponent } from './modal/modal.component';
+import { StopGameModalComponent } from './stop-game-modal/stop-game-modal.component';
 
 @NgModule({
   declarations: [
-    ModalComponent
+    ModalComponent,
+    StopGameModalComponent
   ],
   exports: [
-    ModalComponent
+    ModalComponent,
+    StopGameModalComponent
   ]
 })
 export class ComponentsModule {

@@ -1,0 +1,14 @@
+<app-modal
+  [title]="'Confirmation'"
+  [confirmButtonIcon]="'close'"
+  [confirmButtonClass]="'danger'"
+  [confirmButtonText]="'STOP GAME'"
+  [cancelButtonIcon]="'play'"
+  [cancelButtonClass]="'success'"
+  [cancelButtonText]="'KEEP GOING'"
+  (confirm)="confirm.emit()"
+  (close)="cancel.emit()"
+  (cancel)="cancel.emit()"
+>
+  <h5>Are you sure you want to stop the game?</h5>
+</app-modal>

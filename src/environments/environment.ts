@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-   API_URL: 'https://playwithballs-api.herokuapp.com/'
-  // API_URL: 'http://localhost:8080/'
+   API_URL: 'http://api.playwithballs.test/'
 };
 
 /*

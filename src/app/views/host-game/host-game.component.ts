@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RouteParameters } from '../../routing/routes.enum';
+import { HostedGame } from '../../games/hosted-game.interface';
+import { GameStoreService } from '../../games/game-store.service';
 
 @Component({
   selector: 'app-host-game',
   templateUrl: './host-game.component.html'
 })
 export class HostGameComponent {
-  gameId: string;
+  hostedGame: HostedGame;
 
   startedAt = false;
   ended = false;
@@ -24,8 +26,11 @@ export class HostGameComponent {
     'Nick'
   ];
 
-  constructor(private route: ActivatedRoute) {
-    this.gameId = this.route.snapshot.paramMap.get(RouteParameters.GAME_ID);
+  constructor(private route: ActivatedRoute,
+              private gameStoreService: GameStoreService) {
+    const gameId = +this.route.snapshot.paramMap.get(RouteParameters.GAME_ID);
+    this.hostedGame = this.gameStoreService.getHostedGame(gameId);
+    console.log(this.hostedGame);
   }
 
   startGame(): void {
