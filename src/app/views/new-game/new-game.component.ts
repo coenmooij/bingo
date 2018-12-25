@@ -22,16 +22,17 @@ export class NewGameComponent {
     if (this.title === '') {
       return;
     }
-    this.gameService.createGame(this.title).subscribe(
-      (hostedGame: HostedGame) => {
-        this.hostedGameStoreService.storeHostedGame(hostedGame);
-        this.router.navigate([Routes.HOST_GAME, hostedGame.id]);
-      },
-      (error: Error) => {
-        this.error = true;
-        console.log(error);
-      }
-    );
+    this.gameService.createGame(this.title)
+      .subscribe(
+        (hostedGame: HostedGame) => {
+          this.hostedGameStoreService.storeHostedGame(hostedGame);
+          this.router.navigate([Routes.HOST_GAME, hostedGame.id]);
+        },
+        (error: Error) => {
+          this.error = true;
+          console.log(error);
+        }
+      );
   }
 
   cancel(): void {

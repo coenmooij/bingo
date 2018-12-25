@@ -14,7 +14,6 @@ const routes: Routes = [
       {path: ApplicationRoutes.NEW_GAME, component: NewGameComponent},
       {path: `${ApplicationRoutes.HOST_GAME}/:${RouteParameters.GAME_ID}`, component: HostGameComponent},
       {path: `${ApplicationRoutes.PLAY_GAME}/:${RouteParameters.GAME_ID}`, component: PlayGameComponent}
-
     ]
   },
   {path: '**', redirectTo: ApplicationRoutes.ROOT}
