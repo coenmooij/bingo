@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { RouteParameters } from '../../routing/routes.enum';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RouteParameters, Routes } from '../../routing/routes.enum';
 import { HostedGame } from '../../games/hosted-game.interface';
-import { GameStoreService } from '../../games/game-store.service';
+import { GameService } from '../../games/game.service';
+import { HostedGameStoreService } from '../../games/hosted-game-store.service';
 
 @Component({
   selector: 'app-host-game',
@@ -10,14 +11,7 @@ import { GameStoreService } from '../../games/game-store.service';
 })
 export class HostGameComponent {
   hostedGame: HostedGame;
-
-  startedAt = false;
-  ended = false;
   stopGameModalVisible = false;
-
-  title = 'My new bingo game'; // TODO : Get from api
-  description = 'Playing bingo together with all of my best friends'; // TODO : get from api
-  gamePin = 63234; // TODO : Get from api
 
   players: string[] = [
     'Mama',
@@ -26,38 +20,32 @@ export class HostGameComponent {
     'Nick'
   ];
 
-  constructor(private route: ActivatedRoute,
-              private gameStoreService: GameStoreService) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private gameService: GameService,
+    private gameStoreService: HostedGameStoreService
+  ) {
     const gameId = +this.route.snapshot.paramMap.get(RouteParameters.GAME_ID);
     this.hostedGame = this.gameStoreService.getHostedGame(gameId);
-    console.log(this.hostedGame);
-  }
-
-  startGame(): void {
-    // TODO : Call api and actually start the game, stop players and stuff
-    // TODO : Get the players one last time then stop polling
-    this.startedAt = true;
-  }
-
-  cancelGame(): void {
-    // TODO : Cancel the game with api
-    this.ended = true;
   }
 
   nextBall(): void {
+    // TODO : Get first ball from balls
+    // TODO : Display ball
+    // TODO : store drawn balls in drawn balls
+    // TODO : animate nicely
   }
 
   stopGame(): void {
-    this.stopGameModalVisible = true;
-  }
-
-  confirmStopGame(): void {
-    this.ended = true;
-    this.stopGameModalVisible = false;
-    // TODO : implement end view or navigate to different view
-  }
-
-  cancelStopGame(): void {
-    this.stopGameModalVisible = false;
+    const handleStopGame = () => {
+      this.gameStoreService.removeHostedGame(this.hostedGame.id);
+      this.router.navigate([Routes.ROOT]);
+    };
+    this.gameService.stopGame(this.hostedGame.id, this.hostedGame.sessionId)
+      .subscribe(
+        handleStopGame,
+        handleStopGame
+      );
   }
 }

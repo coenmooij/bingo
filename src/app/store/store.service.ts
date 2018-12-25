@@ -15,4 +15,8 @@ export class StoreService {
   has(key: string): boolean {
     return localStorage.getItem(key) !== null;
   }
+
+  remove(key: string): void {
+    localStorage.removeItem(key);
+  }
 }

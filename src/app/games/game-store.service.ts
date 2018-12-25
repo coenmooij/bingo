@@ -1,24 +1,28 @@
 import { Injectable } from '@angular/core';
 import { StoreService } from '../store/store.service';
-import { HostedGame } from './hosted-game.interface';
+import { Game } from './game.interface';
 
-const HOSTED_GAME = 'hosted_game';
+const GAME = 'game';
 
 @Injectable()
 export class GameStoreService {
   constructor(private storeService: StoreService) {
   }
 
-  storeHostedGame(hostedGame: HostedGame): void {
-    this.storeService.store(this.createHostedGameKey(hostedGame.id), JSON.stringify(hostedGame));
+  storeGame(game: Game): void {
+    this.storeService.store(this.createGameKey(game.id), JSON.stringify(game));
   }
 
-  getHostedGame(id: number): HostedGame {
-    const gameJson = this.storeService.get(this.createHostedGameKey(id));
-    return <HostedGame>JSON.parse(gameJson);
+  getGame(id: number): Game {
+    const gameJson = this.storeService.get(this.createGameKey(id));
+    return <Game>JSON.parse(gameJson);
   }
 
-  createHostedGameKey(id: number): string {
-    return `${HOSTED_GAME}_${id}`;
+  removeGame(id: number): void {
+    this.storeService.remove(this.createGameKey(id));
+  }
+
+  createGameKey(id: number): string {
+    return `${GAME}_${id}`;
   }
 }

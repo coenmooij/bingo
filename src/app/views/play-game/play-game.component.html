@@ -1,0 +1,12 @@
+<h1>{{ game.title }}</h1>
+<hr>
+<div class="card">
+  <div class="card-body">
+    <div class="m-0" *ngFor="let row of card.grid">
+      <app-card-cell
+        *ngFor="let cell of row"
+        [value]="cell">
+      </app-card-cell>
+    </div>
+  </div>
+</div>

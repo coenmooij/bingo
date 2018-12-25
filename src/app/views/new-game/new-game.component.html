@@ -9,6 +9,11 @@
     </div>
   </div>
 
+  <div *ngIf="error" class="alert alert-danger">
+    <h4>Could not create game</h4>
+    <h6>Please try again later!</h6>
+  </div>
+
   <hr>
   <div class="text-right">
     <button class="btn btn-success mr-2 mb-2"

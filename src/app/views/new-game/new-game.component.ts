@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Routes } from '../../routing/routes.enum';
 import { GameService } from '../../games/game.service';
 import { HostedGame } from '../../games/hosted-game.interface';
-import { GameStoreService } from '../../games/game-store.service';
+import { HostedGameStoreService } from '../../games/hosted-game-store.service';
 
 @Component({
   selector: 'app-new-game',
@@ -11,10 +11,11 @@ import { GameStoreService } from '../../games/game-store.service';
 })
 export class NewGameComponent {
   title = '';
+  error = false;
 
   constructor(private router: Router,
               private gameService: GameService,
-              private gameStoreService: GameStoreService) {
+              private hostedGameStoreService: HostedGameStoreService) {
   }
 
   createGame(): void {
@@ -23,10 +24,11 @@ export class NewGameComponent {
     }
     this.gameService.createGame(this.title).subscribe(
       (hostedGame: HostedGame) => {
-        this.gameStoreService.storeHostedGame(hostedGame);
+        this.hostedGameStoreService.storeHostedGame(hostedGame);
         this.router.navigate([Routes.HOST_GAME, hostedGame.id]);
       },
       (error: Error) => {
+        this.error = true;
         console.log(error);
       }
     );

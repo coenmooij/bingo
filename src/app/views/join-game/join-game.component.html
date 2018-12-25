@@ -3,11 +3,26 @@
     Join Game
   </h2>
   <div class="card-body">
+    <h3>Name</h3>
+    <input type="text" [(ngModel)]="name" autofocus class="form-control">
+    <br>
     <h3>Game PIN</h3>
-    <input type="number" autofocus class="form-control form-control-lg" placeholder="12345">
+    <input
+      type="number"
+      [(ngModel)]="pin"
+      class="form-control form-control-lg"
+      placeholder="*****">
+    <br>
+    <div *ngIf="error" class="alert alert-danger">
+      <h4>Could not join game</h4>
+      <h6>Are you sure the pin is correct?</h6>
+    </div>
   </div>
   <div class="card-footer text-right">
-    <button (click)="joinGame()" class="btn btn-success btn-lg">
+    <button
+      [disabled]="formIsValid() ? null: 'disabled'"
+      (click)="joinGame()"
+      class="btn btn-success btn-lg">
       <i class="fa fa-play">&nbsp;</i>JOIN GAME
     </button>
   </div>

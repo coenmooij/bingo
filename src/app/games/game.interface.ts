@@ -1,5 +1,4 @@
 export interface Game {
+  id: number;
   title: string;
-  description: string;
-  startedAt?: Date;
 }

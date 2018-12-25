@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 
@@ -10,19 +10,35 @@ export class ApiService {
   constructor(private http: HttpClient) {
   }
 
-  get<Object>(resource: string): Observable<Object> {
-    return this.http.get<Object>(environment.API_URL + resource);
+  get<Object>(resource: string, options?: {
+    params?: HttpParams | {
+      [param: string]: string | string[];
+    }
+  }): Observable<Object> {
+    return this.http.get<Object>(environment.API_URL + resource, options);
   }
 
-  post<Object>(resource: string, body: object): Observable<Object> {
-    return this.http.post<Object>(environment.API_URL + resource, body);
+  post<Object>(resource: string, body: object, options?: {
+    params?: HttpParams | {
+      [param: string]: string | string[];
+    }
+  }): Observable<Object> {
+    return this.http.post<Object>(environment.API_URL + resource, body, options);
   }
 
-  patch<Object>(resource: string, body: object): Observable<Object> {
-    return this.http.patch<Object>(environment.API_URL + resource, body);
+  patch<Object>(resource: string, body: object, options?: {
+    params?: HttpParams | {
+      [param: string]: string | string[];
+    }
+  }): Observable<Object> {
+    return this.http.patch<Object>(environment.API_URL + resource, body, options);
   }
 
-  delete<Object>(resource: string): Observable<Object> {
-    return this.http.delete<Object>(environment.API_URL + resource);
+  delete<Object>(resource: string, options?: {
+    params?: HttpParams | {
+      [param: string]: string | string[];
+    }
+  }): Observable<Object> {
+    return this.http.delete<Object>(environment.API_URL + resource, options);
   }
 }

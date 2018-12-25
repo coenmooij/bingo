@@ -1,0 +1,23 @@
+.checked {
+  background-color: #2780E3;
+}
+
+.cell {
+  border: 1px solid grey;
+  display: block;
+  width: 20%;
+  position: relative;
+}
+
+.inner-cell {
+  width: 100%;
+  padding-top: 100%;
+}
+
+.inner-cell > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}

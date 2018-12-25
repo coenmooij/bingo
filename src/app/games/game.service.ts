@@ -3,8 +3,11 @@ import { Observable } from 'rxjs';
 import { HostedGame } from './hosted-game.interface';
 import { ApiService } from '../api/api.service';
 import { map } from 'rxjs/operators';
+import { Game } from './game.interface';
+import { Card } from '../cards/card.interface';
 
-const GAMES_RESOURCE = 'games';
+const GAMES = 'games';
+const PLAYERS = 'players';
 
 @Injectable()
 export class GameService {
@@ -12,11 +15,36 @@ export class GameService {
   }
 
   createGame(title: string): Observable<HostedGame> {
-    return this.apiService.post(GAMES_RESOURCE, {title})
-      .pipe(map(
-        (data: { data: HostedGame }) => {
-          return data.data;
-        }
-      ));
+    return this.apiService.post(GAMES, {title})
+      .pipe(
+        map(
+          (data: { data: any }) => {
+            const hostedGame = data.data;
+            hostedGame.balls = <number[]>JSON.parse(hostedGame.balls);
+            return <HostedGame>hostedGame;
+          })
+      );
+  }
+
+  stopGame(id: number, sessionId: string): Observable<void> {
+    const params = {session_id: sessionId};
+    return this.apiService.delete(`${GAMES}/${id}`, {params})
+      .pipe(map(() => {
+        return;
+      }));
+  }
+
+  joinGame(name: string, pin: number): Observable<{ game: Game, card: Card }> {
+    return this.apiService.post(PLAYERS, {pin, name})
+      .pipe(
+        map(
+          (data: { data: { game: Game, card: any } }) => {
+            const card = data.data.card;
+            card.grid = JSON.parse(card.card);
+            card.gameId = card.game_id;
+            const game = data.data.game;
+            return {game, card};
+          })
+      );
   }
 }

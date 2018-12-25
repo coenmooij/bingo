@@ -7,6 +7,7 @@ import { ViewsModule } from './views/views.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from '@angular/common/http';
 import { GameModule } from './games/game.module';
+import { CardModule } from './cards/card.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { GameModule } from './games/game.module';
     LayoutModule,
     RoutingModule,
     ViewsModule,
-    GameModule
+    GameModule,
+    CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
