@@ -40,9 +40,7 @@ export class HostGameComponent implements OnInit {
   }
 
   nextBall(): void {
-    if (this.hostedGame.ballIndex === -1) {
-      this.interval$.unsubscribe();
-    }
+    this.interval$.unsubscribe();
     if (this.lastBallReached()) {
       this.gameService.stopGame(this.hostedGame.id, this.hostedGame.sessionId)
         .subscribe(
