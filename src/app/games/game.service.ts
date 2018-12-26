@@ -42,6 +42,7 @@ export class GameService {
             const card = data.data.card;
             card.grid = JSON.parse(card.card);
             card.gameId = card.game_id;
+            card.checkedNumbers = [];
             const game = data.data.game;
             return {game, card};
           })

@@ -1,0 +1,3 @@
+.card-row app-card-cell:nth-child(5) .inner-cell {
+  border-right: 0;
+}

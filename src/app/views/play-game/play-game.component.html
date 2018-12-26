@@ -1,12 +1,14 @@
 <h1>{{ game.title }}</h1>
+<h5>Tap or click on a number to select it.</h5>
 <hr>
-<div class="card">
-  <div class="card-body">
-    <div class="m-0" *ngFor="let row of card.grid">
-      <app-card-cell
-        *ngFor="let cell of row"
-        [value]="cell">
-      </app-card-cell>
-    </div>
+<div class="bingo-card">
+  <div class="card-row" *ngFor="let row of card.grid">
+    <app-card-cell
+      *ngFor="let cell of row"
+      [value]="cell"
+      [checked]="isChecked(cell)"
+      (check)="check(cell, $event)">
+    </app-card-cell>
   </div>
 </div>
+<hr>

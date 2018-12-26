@@ -1,0 +1,23 @@
+.bingo-card {
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+.card-row {
+  border-left: 2px solid #000;
+  border-right: 2px solid #000;
+  border-bottom: 1px solid #000;
+  padding: 0;
+}
+
+.card-row:first-child {
+  border-top: 2px solid #000;
+}
+
+.card-row:last-child {
+  border-bottom: 2px solid #000;
+}
+
+.card-row app-card-cell:nth-child(5) .inner-cell {
+  border-right: 0;
+}
