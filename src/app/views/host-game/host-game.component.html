@@ -1,8 +1,6 @@
 <div class="mb-4">
   <h1>Game: {{ hostedGame.title }}</h1>
 </div>
-
-<!-- TODO : Game PIN Component-->
 <div class="row">
   <h2 class="alert">Game PIN</h2>
   <h2 class="alert alert-warning text-center">
@@ -52,11 +50,11 @@
   (cancel)="stopGameModalVisible = false">
 </app-stop-game-modal>
 
-<!-- TODO : Make into component that polls for players (until startedAt) -->
+
 <div class="text-center">
   <h2>Registered Players ({{ players.length }})</h2>
   <!-- TODO : Max player name length -->
   <h4 class="player" *ngFor="let player of players">
-    {{ player }}
+    {{ player.name }}
   </h4>
 </div>

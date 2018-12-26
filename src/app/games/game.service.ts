@@ -5,6 +5,7 @@ import { ApiService } from '../api/api.service';
 import { map } from 'rxjs/operators';
 import { Game } from './game.interface';
 import { Card } from '../cards/card.interface';
+import { Player } from './player.interface';
 
 const GAMES = 'games';
 const PLAYERS = 'players';
@@ -49,5 +50,16 @@ export class GameService {
             return {game, card};
           })
       );
+  }
+
+  getPlayers(id: number, sessionId: string): Observable<Player[]> {
+    const params = {session_id: sessionId};
+    return this.apiService.get(`${GAMES}/${id}/${PLAYERS}`, {params}).pipe(
+      map(
+        (data: { data: Player[] }) => {
+          return data.data;
+        }
+      )
+    );
   }
 }

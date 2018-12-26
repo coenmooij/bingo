@@ -1,24 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouteParameters, Routes } from '../../routing/routes.enum';
 import { HostedGame } from '../../games/hosted-game.interface';
 import { GameService } from '../../games/game.service';
 import { HostedGameStoreService } from '../../games/hosted-game-store.service';
+import { interval, Subscription } from 'rxjs';
+import { startWith, switchMap } from 'rxjs/operators';
+import { Player } from '../../games/player.interface';
 
 @Component({
   selector: 'app-host-game',
   templateUrl: './host-game.component.html'
 })
-export class HostGameComponent {
+export class HostGameComponent implements OnInit {
   hostedGame: HostedGame;
   stopGameModalVisible = false;
-
-  players: string[] = [
-    'Mama',
-    'Papa',
-    'Pietje',
-    'Nick'
-  ];
+  interval$: Subscription;
+  interval = 2000;
+  players: Player[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -30,7 +29,20 @@ export class HostGameComponent {
     this.hostedGame = this.gameStoreService.getHostedGame(gameId);
   }
 
+  ngOnInit(): void {
+    this.interval$ = interval(this.interval).pipe(
+      startWith(0),
+      switchMap(() => this.gameService.getPlayers(this.hostedGame.id, this.hostedGame.sessionId))
+    ).subscribe(
+      (players: Player[]) => {
+        this.players = players;
+      });
+  }
+
   nextBall(): void {
+    if (this.hostedGame.ballIndex === -1) {
+      this.interval$.unsubscribe();
+    }
     if (this.lastBallReached()) {
       this.gameService.stopGame(this.hostedGame.id, this.hostedGame.sessionId)
         .subscribe(
@@ -52,6 +64,7 @@ export class HostGameComponent {
 
   stopGame(): void {
     const handleStopGame = () => {
+      this.interval$.unsubscribe();
       this.gameStoreService.removeHostedGame(this.hostedGame.id);
       this.router.navigate([Routes.ROOT]);
     };
