@@ -31,10 +31,23 @@ export class HostGameComponent {
   }
 
   nextBall(): void {
-    // TODO : Get first ball from balls
-    // TODO : Display ball
-    // TODO : store drawn balls in drawn balls
-    // TODO : animate nicely
+    if (this.lastBallReached()) {
+      this.gameService.stopGame(this.hostedGame.id, this.hostedGame.sessionId)
+        .subscribe(
+          () => {
+          },
+          (error: Error) => {
+            console.log(error);
+          }
+        );
+    } else {
+      this.hostedGame.ballIndex++;
+    }
+    this.gameStoreService.storeHostedGame(this.hostedGame);
+  }
+
+  lastBallReached(): boolean {
+    return this.hostedGame.ballIndex >= this.hostedGame.balls.length - 1;
   }
 
   stopGame(): void {

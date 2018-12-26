@@ -4,5 +4,5 @@ export interface HostedGame {
   sessionId: string;
   pin: number;
   balls: number[];
-  drawnBalls?: number[];
+  ballIndex: number;
 }

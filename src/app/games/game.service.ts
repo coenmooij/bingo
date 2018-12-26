@@ -21,6 +21,8 @@ export class GameService {
           (data: { data: any }) => {
             const hostedGame = data.data;
             hostedGame.balls = <number[]>JSON.parse(hostedGame.balls);
+            hostedGame.ballIndex = -1;
+            hostedGame.sessionId = hostedGame.session_id;
             return <HostedGame>hostedGame;
           })
       );

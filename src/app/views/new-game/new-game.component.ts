@@ -7,7 +7,8 @@ import { HostedGameStoreService } from '../../games/hosted-game-store.service';
 
 @Component({
   selector: 'app-new-game',
-  templateUrl: './new-game.component.html'
+  templateUrl: './new-game.component.html',
+  styleUrls: ['new-game.component.css']
 })
 export class NewGameComponent {
   title = '';

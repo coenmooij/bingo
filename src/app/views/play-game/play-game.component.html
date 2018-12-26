@@ -1,7 +1,9 @@
-<h1>{{ game.title }}</h1>
-<h5>Tap or click on a number to select it.</h5>
+<h1>Game: {{ game.title }}</h1>
+<h5>Tap or click on a number to select or de-select it.</h5>
 <hr>
+
 <div class="bingo-card">
+  <h3 class="name text-center bg-primary">{{ card.name }}'s card</h3>
   <div class="card-row" *ngFor="let row of card.grid">
     <app-card-cell
       *ngFor="let cell of row"

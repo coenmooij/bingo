@@ -1,0 +1,24 @@
+.ball {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: yellow;
+}
+
+h3 {
+  font-weight: bold;
+  line-height: 45px;
+}
+
+.big {
+  width: 200px;
+  height: 200px;
+}
+
+.big h3 {
+  font-size: 100px;
+  line-height: 190px;
+}
+
+

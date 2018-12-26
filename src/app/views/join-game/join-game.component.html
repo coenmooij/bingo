@@ -3,14 +3,14 @@
     Join Game
   </h2>
   <div class="card-body">
-    <h3>Name</h3>
+    <h4>Name</h4>
     <input type="text" [(ngModel)]="name" autofocus class="form-control">
     <br>
-    <h3>Game PIN</h3>
+    <h4>Game PIN</h4>
     <input
       type="number"
       [(ngModel)]="pin"
-      class="form-control form-control-lg"
+      class="form-control"
       placeholder="*****">
     <br>
     <div *ngIf="error" class="alert alert-danger">
@@ -22,7 +22,7 @@
     <button
       [disabled]="formIsValid() ? null: 'disabled'"
       (click)="joinGame()"
-      class="btn btn-success btn-lg">
+      class="btn btn-success">
       <i class="fa fa-play">&nbsp;</i>JOIN GAME
     </button>
   </div>

@@ -1,5 +1,5 @@
 <div class="mb-4">
-  <h1>{{ hostedGame.title }}</h1>
+  <h1>Game: {{ hostedGame.title }}</h1>
 </div>
 
 <!-- TODO : Game PIN Component-->
@@ -10,13 +10,31 @@
   </h2>
 </div>
 
-<!-- TODO : Add bingo playing visual -->
 
-<!-- TODO : Bingo playing buttons -->
+<hr *ngIf="hostedGame.ballIndex > -1">
+<div *ngIf="hostedGame.ballIndex > 0" class="alert">
+  <h3>Last numbers:</h3>
+  <app-ball *ngIf="hostedGame.ballIndex > 2" [value]="hostedGame.balls[hostedGame.ballIndex-3]"></app-ball>
+  <app-ball *ngIf="hostedGame.ballIndex > 1" [value]="hostedGame.balls[hostedGame.ballIndex-2]"></app-ball>
+  <app-ball [value]="hostedGame.balls[hostedGame.ballIndex-1]"></app-ball>
+</div>
+
+<div class="alert" *ngIf="hostedGame.ballIndex > -1">
+  <h3>Current number:</h3>
+  <app-ball [isBig]="true" [value]="hostedGame.balls[hostedGame.ballIndex]"></app-ball>
+</div>
+
+<div *ngIf="lastBallReached()" class="alert alert-success text-center">
+  <h3>Finito!</h3>
+  <h5>You have reached the end of the game. Thanks for playing!</h5>
+</div>
+
+
 <div class="text-center">
   <hr>
   <button
     class="btn btn-lg btn-success"
+    [disabled]="lastBallReached() ? 'disabled' : null"
     (click)="nextBall()">
     <i class="fa fa-play">&nbsp;</i>NEXT BALL
   </button>
